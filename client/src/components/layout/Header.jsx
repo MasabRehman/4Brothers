@@ -9,27 +9,35 @@ const Header = () => {
     <header className="bg-[#f6efe1] w-full top-0 sticky z-50 border-b border-outline-variant shadow-sm relative">
       <div className="max-w-container-max mx-auto px-4 md:px-margin flex items-center justify-between h-16 md:h-20 gap-4">
 
-        {/* Left Side: Mobile Menu Toggle & Logo */}
-        <div className="flex items-center flex-none gap-2">
+        {/* Left Side: Mobile Menu Toggle (Mobile) / Logo (Desktop) */}
+        <div className="flex items-center flex-none w-1/3 md:w-auto justify-start">
           <button className="md:hidden p-1 text-primary hover:bg-surface-container-low rounded transition-all" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="4Brothers" className="h-10 md:h-14 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png'; }} />
+          <Link to="/" className="hidden md:flex items-center">
+            <img src="/logo.png" alt="4Brothers" className="h-14 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png'; }} />
           </Link>
         </div>
 
-        {/* Center: Navigation (Desktop) */}
-        <nav className="hidden md:flex flex-1 justify-center gap-gutter font-body-md text-body-md text-primary">
-          <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Medicines</a>
-          <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Groceries</a>
-          <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Home Needs</a>
-          <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Office Needs</a>
-          <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Construction</a>
-        </nav>
+        {/* Center: Logo (Mobile) / Navigation (Desktop) */}
+        <div className="flex justify-center items-center flex-1">
+          {/* Mobile Logo */}
+          <Link to="/" className="md:hidden flex items-center">
+            <img src="/logo.png" alt="4Brothers" className="h-10 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png'; }} />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex justify-center gap-gutter font-body-md text-body-md text-primary">
+            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Medicines</a>
+            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Groceries</a>
+            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Home Needs</a>
+            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Office Needs</a>
+            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Construction</a>
+          </nav>
+        </div>
 
         {/* Right Side: Actions */}
-        <div className="flex items-center justify-end gap-2 md:gap-stack-md flex-none">
+        <div className="flex items-center justify-end gap-2 md:gap-stack-md flex-none w-1/3 md:w-auto">
           <button className="p-2 text-primary hover:bg-surface-container-low transition-all rounded-full scale-95 duration-150">
             <Search size={22} />
           </button>
