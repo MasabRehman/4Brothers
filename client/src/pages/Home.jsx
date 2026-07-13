@@ -40,7 +40,7 @@ const Home = () => {
             </p>
             <div className="flex flex-wrap gap-stack-md mt-4">
               <button className="font-label-bold text-label-bold text-on-primary bg-primary-container px-8 py-3 rounded industrial-shadow hover:brightness-110 transition-all uppercase tracking-widest">Order Now</button>
-              <button className="font-label-bold text-label-bold text-secondary-fixed-dim border-2 border-secondary-fixed-dim px-8 py-3 rounded hover:bg-surface-variant/10 transition-colors uppercase tracking-widest">Contact Sales</button>
+              <button className="md:hidden font-label-bold text-label-bold text-secondary-fixed-dim border-2 border-secondary-fixed-dim px-8 py-3 rounded hover:bg-surface-variant/10 transition-colors uppercase tracking-widest">Contact Sales</button>
             </div>
           </div>
         </div>
