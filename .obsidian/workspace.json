@@ -1,0 +1,41 @@
+{
+  "main": {
+    "id": "main",
+    "type": "split",
+    "children": [
+      {
+        "id": "left",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "docs/Home.md",
+            "mode": "preview",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "left-ribbon",
+    "type": "ribbon",
+    "collapsed": false,
+    "children": []
+  },
+  "right": {
+    "id": "right-sidebar",
+    "type": "split",
+    "collapsed": true,
+    "children": []
+  },
+  "active": "left",
+  "lastOpenFiles": [
+    "docs/Home.md",
+    "docs/Session Log.md",
+    "docs/Bug Tracker.md",
+    "docs/Backlog.md",
+    "docs/Project Context.md"
+  ]
+}

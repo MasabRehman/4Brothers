@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { 
+    @apply bg-background text-on-surface font-body-md antialiased; 
+    font-family: 'Manrope', sans-serif; 
+  }
+}
+
+@layer utilities {
+  .industrial-shadow { box-shadow: 0 2px 0 0 theme('colors.primary-container'); }
+  .industrial-card { border: 1px solid rgba(7, 42, 31, 0.1); background-color: theme('colors.surface-container-lowest'); }
+  .industrial-focus:focus-within { border-color: theme('colors.secondary'); border-width: 2px; }
+  
+  .industrial-overlay {
+    background: linear-gradient(180deg, rgba(7, 42, 31, 0.1) 0%, rgba(7, 42, 31, 0.8) 100%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.surface-container');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.primary-container');
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.secondary');
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

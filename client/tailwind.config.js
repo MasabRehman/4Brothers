@@ -1,0 +1,103 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "class",
+  theme: {
+      extend: {
+          "colors": {
+              "on-primary-fixed-variant": "#2c4d40",
+              "on-tertiary-container": "#8c8c88",
+              "tertiary": "#0f100d",
+              "secondary": "#775a19",
+              "on-primary-fixed": "#002116",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#e4e2de",
+              "on-secondary-container": "#785a1a",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#242522",
+              "secondary-fixed-dim": "#e9c176",
+              "inverse-primary": "#aacebe",
+              "on-surface": "#1c1b1b",
+              "outline": "#727974",
+              "surface-tint": "#446557",
+              "surface-container": "#f0eded",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-dim": "#dcd9d9",
+              "on-secondary": "#ffffff",
+              "primary-container": "#072a1f",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#c8c6c2",
+              "on-secondary-fixed": "#261900",
+              "on-tertiary": "#ffffff",
+              "on-background": "#1c1b1b",
+              "inverse-surface": "#313030",
+              "on-tertiary-fixed-variant": "#474744",
+              "primary": "#00130c",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-variant": "#e5e2e1",
+              "secondary-fixed": "#ffdea5",
+              "outline-variant": "#c1c8c3",
+              "on-secondary-fixed-variant": "#5d4201",
+              "on-primary-container": "#719384",
+              "surface-container-highest": "#e5e2e1",
+              "on-surface-variant": "#414845",
+              "primary-fixed-dim": "#aacebe",
+              "on-error-container": "#93000a",
+              "background": "#fcf9f8",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#c6ebd9",
+              "surface-bright": "#fcf9f8",
+              "on-tertiary-fixed": "#1b1c19",
+              "surface-container-low": "#f6f3f2",
+              "secondary-container": "#fed488",
+              "surface": "#fcf9f8"
+          },
+          "borderRadius": {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+          },
+          "spacing": {
+              "container-max": "1280px",
+              "unit": "8px",
+              "stack-md": "16px",
+              "stack-lg": "32px",
+              "stack-sm": "8px",
+              "margin": "40px",
+              "gutter": "24px"
+          },
+          "fontFamily": {
+              "body-sm": ["Manrope"],
+              "label-md": ["Manrope"],
+              "headline-lg": ["Manrope"],
+              "headline-display": ["Manrope"],
+              "headline-display-mobile": ["Manrope"],
+              "headline-md": ["Manrope"],
+              "body-md": ["Manrope"],
+              "label-bold": ["Manrope"],
+              "body-lg": ["Manrope"]
+          },
+          "fontSize": {
+              "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+              "label-md": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+              "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+              "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+              "headline-display-mobile": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+              "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+              "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+              "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "label-bold": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+              "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+          }
+      }
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/container-queries'),
+  ],
+}

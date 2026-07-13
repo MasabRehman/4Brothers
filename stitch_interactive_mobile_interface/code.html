@@ -1,0 +1,255 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Four Brother - Mobile Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed": "#e4e2de",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-container": "#fed488",
+                        "secondary-fixed-dim": "#e9c176",
+                        "primary": "#00130c",
+                        "surface-container": "#f0eded",
+                        "outline-variant": "#c1c8c3",
+                        "on-secondary-container": "#785a1a",
+                        "inverse-primary": "#aacebe",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-bright": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "secondary": "#775a19",
+                        "on-primary-fixed-variant": "#2c4d40",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#313030",
+                        "on-surface-variant": "#414845",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "surface": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-secondary-fixed": "#261900",
+                        "primary-fixed-dim": "#aacebe",
+                        "on-tertiary-container": "#8c8c88",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#0f100d",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1c1b1b",
+                        "background": "#fcf9f8",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed": "#c6ebd9",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-high": "#eae7e7",
+                        "outline": "#727974",
+                        "surface-tint": "#446557",
+                        "primary-container": "#072a1f",
+                        "tertiary-container": "#242522",
+                        "on-primary-fixed": "#002116",
+                        "on-primary-container": "#719384",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin": "40px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Manrope"],
+                        "headline-display": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-display-mobile": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .industrial-shadow {
+            box-shadow: 0px 2px 0px 0px #072a1f;
+        }
+        .industrial-overlay {
+            background: linear-gradient(180deg, rgba(7, 42, 31, 0.1) 0%, rgba(7, 42, 31, 0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased md:max-w-md md:mx-auto md:border-x md:border-outline-variant md:shadow-2xl">
+<!-- TopNavBar (Shared Component JSON) -->
+<header class="bg-surface dark:bg-surface-dim sticky top-0 w-full z-50 border-b border-outline-variant dark:border-outline shadow-sm">
+<div class="flex items-center justify-between px-4 py-3 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Four Brother</span>
+</div>
+<!-- Search Icon for Mobile (Navigation hidden on mobile as per rules) -->
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-all rounded-full scale-95 duration-150">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="relative w-full h-[50vh] min-h-[400px] flex flex-col justify-end">
+<!-- Full Bleed Image from User Prompt -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A massive, modern industrial warehouse building with green and gold metallic panels, viewed at sunset. A large green delivery van with gold trim is parked prominently in the foreground on a meticulously clean brick paver lot. The sky is bright with dramatic clouds, emphasizing scale, reliability, and professional logistics." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvNFQH5NVXrhOqqAx9BSbtq7z5sLzcCDK7Mh4CrLYzI7syJhvQFzd3PhJwhZUZ7uc3faNND51xq06a5d4wMxc2IFv8afTl8mtVu5JayWzLB4r9UqN0L2c-xwNe_oPGe3IVDzTsq3hOAxBz_1W0-WfytACQ6J6pTkjxtnIUDcrwkf5ft9dJ9kqYhJefF0UqZiYod_Ellj3s5aWw2gsXDLa-lnDf2zNlW_HZfbKgvEvWy9A1uIli00q50YGU')"></div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 industrial-overlay"></div>
+<!-- Hero Content -->
+<div class="relative z-10 p-4 pb-8 flex flex-col gap-4">
+<span class="inline-flex items-center gap-1 bg-surface-container-low/20 backdrop-blur-sm text-on-tertiary px-3 py-1 rounded-full w-fit border border-outline-variant/30 font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+                    NATIONWIDE LOGISTICS
+                </span>
+<h1 class="font-headline-display-mobile text-headline-display-mobile text-on-tertiary drop-shadow-md">
+                    Everything You Need,<br><span class="text-secondary-fixed">We Deliver!</span>
+</h1>
+<p class="font-body-md text-body-md text-surface-container-highest max-w-[90%]">
+                    From daily essentials to industrial-scale requirements. Trusted partner for homes, businesses, and special events.
+                </p>
+<div class="flex gap-3 mt-2">
+<button class="bg-primary-container text-on-tertiary font-label-bold text-label-bold px-6 py-3 rounded hover:bg-primary-container/90 transition-colors border border-primary-container shadow-md flex-1 text-center">
+                        ORDER NOW
+                    </button>
+<button class="bg-transparent text-on-tertiary font-label-bold text-label-bold px-6 py-3 rounded border-2 border-secondary-fixed hover:bg-secondary-fixed/10 transition-colors flex items-center justify-center gap-2 flex-1">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+                        CONTACT
+                    </button>
+</div>
+</div>
+</section>
+<!-- Trust Bar (High Density) -->
+<section class="bg-primary-container text-on-tertiary py-3 px-4 border-b border-outline/30">
+<div class="grid grid-cols-3 gap-2 divide-x divide-outline/30 text-center">
+<div class="flex flex-col items-center justify-center px-1">
+<span class="material-symbols-outlined text-secondary-fixed mb-1" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-bold text-[10px] leading-tight">TRUSTED<br>SERVICE</span>
+</div>
+<div class="flex flex-col items-center justify-center px-1">
+<span class="material-symbols-outlined text-secondary-fixed mb-1" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="font-label-bold text-[10px] leading-tight">FAST &amp; SAFE<br>DELIVERY</span>
+</div>
+<div class="flex flex-col items-center justify-center px-1">
+<span class="material-symbols-outlined text-secondary-fixed mb-1" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="font-label-bold text-[10px] leading-tight">24/7 CUSTOMER<br>SUPPORT</span>
+</div>
+</div>
+</section>
+<!-- Product Categories (2-Column Grid) -->
+<section class="p-4 bg-surface flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-primary">Our Supplies</h2>
+<button class="text-secondary font-label-bold text-label-bold hover:underline">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Category 1 -->
+<a class="group bg-surface-container-lowest border-2 border-secondary rounded flex flex-col industrial-shadow transition-all overflow-hidden relative" href="#"><div class="absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span class="material-symbols-outlined text-[14px] block">check</span></div><div class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div><div class="h-24 bg-surface-variant flex items-center justify-center relative overflow-hidden"><img class="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300" data-alt="A professional studio shot of various pharmaceutical medicines, pill bottles, and blister packs neatly arranged on a clean white surface with bright, high-key lighting emphasizing health and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA145ZXDovDYgf7GgdgCO-fRh90EFiG11AjYR8tmJIx3AdtsplJpQfuStAcAudsDlaCAKu88L5awiAV3JeU1FpJTEA6hVl51YYhKF6e4DtJ9ixX_5TPy7pGg-5-OVZLanZOC0bOkB-WljWS2vAjsH2aqCB14nO6_bG65bXMdzjX7WJhV53NX_j_IaKLTLJloW-HIuVPY6eR1LxaX6WWnK_gnG0K35UWo7oSlsO9ckI7H9CGTtKjP7fcw"></div><div class="p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10"><span class="font-label-md text-label-md text-secondary transition-colors">Medicines</span><span class="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span></div></a>
+<!-- Category 2 -->
+<a class="group bg-surface-container-lowest border-2 border-secondary rounded flex flex-col industrial-shadow transition-all overflow-hidden relative" href="#"><div class="absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span class="material-symbols-outlined text-[14px] block">check</span></div><div class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div><div class="h-24 bg-surface-variant flex items-center justify-center relative overflow-hidden"><img class="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300" data-alt="A beautifully arranged woven basket overflowing with fresh, vibrant fruits and vegetables, sitting on a clean, light surface with natural daylight highlighting the freshness and vibrant colors of the produce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMajlb8LTcRYNnhkJewNuy8b9KQO6TdIRPVUq4Y702DUNa9Fiv0UHlDaPx1s9CYC-YoLrHm9ON2FPJxsvDe28UhXzBQ75pHwC-rhGd86-eDeL28xSBaQEBI-xIjRKiDsI5XQ7970zeueLtKzxhclwJbeciYctvdTAYxxDBbIKGzh-Efp14ODV4FNFTz3ezfEM_uMefD0RW8V0PODGTPp-eD9P50RISNXFFYX9iTfen5N6UfgrAZ0B3FA"></div><div class="p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10"><span class="font-label-md text-label-md text-secondary transition-colors">Groceries</span><span class="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span></div></a>
+<!-- Category 3 -->
+<a class="group bg-surface-container-lowest border-2 border-secondary rounded flex flex-col industrial-shadow transition-all overflow-hidden relative" href="#"><div class="absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span class="material-symbols-outlined text-[14px] block">check</span></div><div class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div><div class="h-24 bg-surface-variant flex items-center justify-center relative overflow-hidden"><img class="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300" data-alt="A sophisticated collection of modern home goods including ceramic bowls, a sleek coffee carafe, and soft textiles, arranged tastefully against a minimalist, warm-toned background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeVuX5vsbctT8tAcmpzXuk8Dx7oSxzGDSRW22M-_6jrXpwUwIh8C3WtVm5yJ1xIP0kHNqci18ajZN7unUxXQPidBgnk3JEK4ehsrEIh7tFLVRSegToa-W3ZBSRPZth7qMDuU4kpA74kjHyrhhp5JFoo4-YI7nC4TdPMnJvLQlQjSoDGs2dKkO0JUnoZ41-sVxG5x9eQEtjg7omJw5cYfp_9JE7blhke_LcmuTvmTqLwSfNACka1__rbA"></div><div class="p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10"><span class="font-label-md text-label-md text-secondary transition-colors">Home Needs</span><span class="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span></div></a>
+<!-- Category 4 -->
+<a class="group bg-surface-container-lowest border-2 border-secondary rounded flex flex-col industrial-shadow transition-all overflow-hidden relative" href="#"><div class="absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span class="material-symbols-outlined text-[14px] block">check</span></div><div class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div><div class="h-24 bg-surface-variant flex items-center justify-center relative overflow-hidden"><img class="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300" data-alt="A highly organized desk setup featuring professional office supplies: pens, notebooks, a calculator, and folders, shot with crisp, clear lighting suitable for a corporate industrial supply catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPBshSHnKORr3AOMhfaJBBrLZQjaJXkqDOVlBUV9_iQCRQ1tiv86VKcsXHykS0ck1I_Q-9q3jZyONvCnZzhCEcb8QXETLy1UhWRxc6lj-Qapg_RzZfhzZLIRafzyTEpP9Y2y-RU2ULRbHQsUMR7-ldyzjmMG8y83qKy3fghtDhyZ5knFu7lwTEA8oMWPKpNwQr-SJCNfVXFQi1sz7PqBHqLhJwHlS4FYw1bycaXL1xYxlMwFh_x8hE0g"></div><div class="p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10"><span class="font-label-md text-label-md text-secondary transition-colors">Office Needs</span><span class="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span></div></a>
+<!-- Category 5 (Featured - spans 2 cols on mobile) -->
+<a class="col-span-2 group bg-surface-container-lowest border border-secondary rounded flex flex-col industrial-shadow transition-all overflow-hidden relative mt-1" href="#">
+<div class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
+<div class="h-32 bg-surface-variant flex items-center justify-center relative overflow-hidden">
+<img class="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300" data-alt="Heavy construction materials including cement bags, steel rebar, bricks, and a yellow hard hat, arranged systematically on a clean concrete floor under bright, industrial warehouse lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3MQipRIwnUM1uPFZKE8O_OVKDnYK30lFsbRaiNVCCYVXX1y6XQfckHAqySUNWuV9DdL0tmJL2c9XJSIqn1wgsF4vl6KC3exGru4Zz3u89d1UT9isPjrKDb1SW3-ZYmoddP_OrEojEDFWZOsypg8k24dbVHxTG9oe0EpVYtn8f2rmYLEbJdt3Byg4Z0qRqNYKtzqNLvtLdH6PR746fo0Tv56fvow70fD55gNXOPTgEVo_BiAJfizDH5A">
+</div>
+<div class="p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10">
+<div>
+<span class="block font-label-bold text-label-bold text-secondary mb-1">FEATURED DIVISION</span>
+<span class="font-headline-md text-[18px] font-bold text-primary">Construction &amp; Heavy</span>
+</div>
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed/20 p-2 rounded-full">engineering</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Track Your Supply Chain Feature -->
+<section class="p-4 bg-surface-container-low border-t border-outline-variant/50 flex flex-col gap-3">
+<div class="bg-surface-container-lowest border border-[#072a1f]/10 rounded p-4 relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-fixed/20 rounded-full blur-xl"></div>
+<div class="flex items-start gap-3 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-md text-label-md text-primary mb-1">Track Your Supply Chain</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 leading-snug">
+                            Enter your logistics ID to monitor your heavy fleet or daily delivery status in real-time.
+                        </p>
+<div class="flex gap-2">
+<input class="w-full bg-surface-bright border border-outline/30 rounded px-3 py-2 font-body-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-primary" placeholder="Enter Order ID" type="text">
+<button class="bg-primary-container text-on-tertiary px-3 py-2 rounded flex items-center justify-center hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component JSON - Mobile Adapted) -->
+<footer class="bg-primary-container dark:bg-tertiary-container text-on-primary-container dark:text-on-tertiary-container font-body-sm text-body-sm w-full mt-auto border-t-4 border-secondary flat no shadows pb-safe">
+<div class="flex flex-col gap-6 px-4 py-8 max-w-container-max mx-auto">
+<div class="flex flex-col items-center text-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary-container">Four Brother</span>
+<p class="opacity-80 text-xs uppercase tracking-wider">One Company. Every Need.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<a class="text-on-primary-container opacity-80 hover:opacity-100 hover:text-secondary-container transition-colors" href="#">About Us</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 hover:text-secondary-container transition-colors" href="#">Locations</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 hover:text-secondary-container transition-colors" href="#">Contact Support</a>
+</div>
+<div class="flex flex-col gap-2 text-right">
+<a class="text-on-primary-container opacity-80 hover:opacity-100 hover:text-secondary-container transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary-container opacity-80 hover:opacity-100 hover:text-secondary-container transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="w-full h-px bg-outline/20 my-2"></div>
+<div class="text-center text-xs opacity-60">
+                © 2024 Four Brother. One Company. Every Need.
+            </div>
+</div>
+</footer>
+
+
+</body></html>

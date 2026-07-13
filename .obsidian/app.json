@@ -1,0 +1,12 @@
+{
+  "configVersion": 1,
+  "useMarkdownLinks": false,
+  "strictLineBreaks": false,
+  "showFrontmatter": true,
+  "defaultViewMode": "source",
+  "attachmentFolderPath": "docs/assets",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "docs",
+  "foldHeading": false,
+  "theme": "obsidian"
+}
