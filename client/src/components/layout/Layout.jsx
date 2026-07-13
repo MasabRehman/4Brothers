@@ -5,14 +5,20 @@ import { api } from '../../services/api';
 import { X, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 const Layout = ({ children }) => {
-  const [settings, setSettings] = useState({});
+  const [settings, setSettings] = useState(() => {
+    const cached = localStorage.getItem('company_settings');
+    return cached ? JSON.parse(cached) : {};
+  });
   const [activePopup, setActivePopup] = useState(null);
 
   useEffect(() => {
     const fetchSettings = async () => {
       try {
         const res = await api.getSettings();
-        if (res.data) setSettings(res.data);
+        if (res.data) {
+          setSettings(res.data);
+          localStorage.setItem('company_settings', JSON.stringify(res.data));
+        }
       } catch (err) {
         console.error('Error fetching settings:', err);
       }
@@ -80,17 +86,17 @@ const Layout = ({ children }) => {
             </div>
           </div>
           
-          <div className="flex flex-col gap-3 md:gap-2 text-center md:text-left">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:flex-col md:gap-2 text-center md:text-left">
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_about_us')}>About Us</a>
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_bulk_orders')}>Bulk Orders</a>
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_sustainability')}>Sustainability</a>
           </div>
           
-          <div className="flex flex-col gap-3 md:gap-2 text-center md:text-left">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:flex-col md:gap-2 text-center md:text-left">
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_compliance')}>Compliance</a>
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_contact_us')}>Contact Us</a>
             <a className="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer" onClick={(e) => openPopup(e, 'popup_terms')}>Terms of Service</a>
-            <Link className="text-secondary/80 hover:text-secondary transition-colors font-bold mt-2" to="/admin/login">Admin Login</Link>
+            <Link className="text-secondary/80 hover:text-secondary transition-colors font-bold w-full md:w-auto md:mt-2" to="/admin/login">Admin Login</Link>
           </div>
 
         </div>

@@ -3,13 +3,19 @@ import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 
 const Home = () => {
-  const [settings, setSettings] = useState({});
+  const [settings, setSettings] = useState(() => {
+    const cached = localStorage.getItem('company_settings');
+    return cached ? JSON.parse(cached) : {};
+  });
 
   useEffect(() => {
     const fetchSettings = async () => {
       try {
         const res = await api.getSettings();
-        if (res.data) setSettings(res.data);
+        if (res.data) {
+          setSettings(res.data);
+          localStorage.setItem('company_settings', JSON.stringify(res.data));
+        }
       } catch (err) {
         console.error('Error fetching settings for homepage:', err);
       }
