@@ -1,9 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
+import { api } from '../../services/api';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [categories, setCategories] = useState(() => {
+    const cached = localStorage.getItem('company_categories');
+    return cached ? JSON.parse(cached) : [];
+  });
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await api.getCategories();
+        if (res.data) {
+          setCategories(res.data);
+          localStorage.setItem('company_categories', JSON.stringify(res.data));
+        }
+      } catch (err) {
+        console.error('Error fetching categories:', err);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const getCatId = (name) => {
+    const cat = categories.find(c => c.name.toLowerCase() === name.toLowerCase());
+    return cat ? `/category/${cat.id}` : "#";
+  };
 
   return (
     <header className="bg-[#f6efe1] w-full top-0 sticky z-50 border-b border-outline-variant shadow-sm relative">
@@ -26,14 +51,14 @@ const Header = () => {
             <img src="/logo.png?v=2" alt="4Brothers" className="h-10 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png?v=2'; }} />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex justify-center gap-gutter font-body-md text-body-md text-primary">
-            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Medicines</a>
-            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Groceries</a>
-            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Home Needs</a>
-            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Office Needs</a>
-            <a className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" href="#">Construction</a>
-          </nav>
+          {/* Center: Navigation (Desktop) */}
+        <nav className="hidden md:flex flex-1 justify-center gap-gutter font-body-md text-body-md text-primary">
+          <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Medicines')}>Medicines</Link>
+          <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Groceries')}>Groceries</Link>
+          <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Home Needs')}>Home Needs</Link>
+          <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Office Needs')}>Office Needs</Link>
+          <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Construction')}>Construction</Link>
+        </nav>
         </div>
 
         {/* Right Side: Actions */}
@@ -53,11 +78,11 @@ const Header = () => {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#f6efe1] border-b border-outline-variant shadow-lg flex flex-col font-body-md text-primary">
-          <a className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" href="#">Medicines</a>
-          <a className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" href="#">Groceries</a>
-          <a className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" href="#">Home Needs</a>
-          <a className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" href="#">Office Needs</a>
-          <a className="px-4 py-3 active:bg-surface-variant" href="#">Construction</a>
+          <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Medicines')}>Medicines</Link>
+          <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Groceries')}>Groceries</Link>
+          <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Home Needs')}>Home Needs</Link>
+          <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Office Needs')}>Office Needs</Link>
+          <Link className="px-4 py-3 active:bg-surface-variant" to={getCatId('Construction')}>Construction</Link>
         </div>
       )}
     </header>

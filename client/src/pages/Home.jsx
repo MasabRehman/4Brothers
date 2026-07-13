@@ -7,6 +7,10 @@ const Home = () => {
     const cached = localStorage.getItem('company_settings');
     return cached ? JSON.parse(cached) : {};
   });
+  const [categories, setCategories] = useState(() => {
+    const cached = localStorage.getItem('company_categories');
+    return cached ? JSON.parse(cached) : [];
+  });
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -20,8 +24,25 @@ const Home = () => {
         console.error('Error fetching settings for homepage:', err);
       }
     };
+    const fetchCategories = async () => {
+      try {
+        const res = await api.getCategories();
+        if (res.data) {
+          setCategories(res.data);
+          localStorage.setItem('company_categories', JSON.stringify(res.data));
+        }
+      } catch (err) {
+        console.error('Error fetching categories:', err);
+      }
+    };
     fetchSettings();
+    fetchCategories();
   }, []);
+
+  const getCatId = (name) => {
+    const cat = categories.find(c => c.name.toLowerCase() === name.toLowerCase());
+    return cat ? `/category/${cat.id}` : "#";
+  };
   return (
     <>
       {/* Hero Section */}
@@ -94,7 +115,7 @@ const Home = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-stack-md">
           
           {/* Medicine */}
-          <Link to="#" className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
+          <Link to={getCatId('Medicines')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
@@ -107,7 +128,7 @@ const Home = () => {
           </Link>
 
           {/* Groceries */}
-          <Link to="#" className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
+          <Link to={getCatId('Groceries')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
@@ -120,7 +141,7 @@ const Home = () => {
           </Link>
 
           {/* Home Needs */}
-          <Link to="#" className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
+          <Link to={getCatId('Home Needs')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
@@ -133,7 +154,7 @@ const Home = () => {
           </Link>
 
           {/* Office Needs */}
-          <Link to="#" className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
+          <Link to={getCatId('Office Needs')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded">PRIORITY</div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
@@ -147,7 +168,7 @@ const Home = () => {
           </Link>
 
           {/* Construction (Featured) */}
-          <Link to="#" className="col-span-2 md:col-span-1 group bg-surface-container-lowest md:industrial-card border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative md:mt-0 mt-1">
+          <Link to={getCatId('Construction')} className="col-span-2 md:col-span-1 group bg-surface-container-lowest md:industrial-card border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative md:mt-0 mt-1">
             <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded z-20">BULK</div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-32 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
