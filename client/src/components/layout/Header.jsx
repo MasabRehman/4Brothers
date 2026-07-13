@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
 import { api } from '../../services/api';
+import logo from '../../assets/logo.png';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,7 +41,7 @@ const Header = () => {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <Link to="/" className="hidden md:flex items-center">
-            <img src="/logo.png?v=2" alt="4Brothers" className="h-14 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png?v=2'; }} />
+            <img src={logo} alt="4Brothers" className="h-14 object-contain" />
           </Link>
         </div>
 
@@ -48,7 +49,7 @@ const Header = () => {
         <div className="flex justify-center items-center flex-1">
           {/* Mobile Logo */}
           <Link to="/" className="md:hidden flex items-center">
-            <img src="/logo.png?v=2" alt="4Brothers" className="h-10 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png?v=2'; }} />
+            <img src={logo} alt="4Brothers" className="h-10 object-contain" />
           </Link>
 
           {/* Center: Navigation (Desktop) */}
