@@ -15,7 +15,7 @@ const Header = () => {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <Link to="/" className="hidden md:flex items-center">
-            <img src="/logo.png" alt="4Brothers" className="h-14 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png'; }} />
+            <img src="/logo.png?v=2" alt="4Brothers" className="h-14 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png?v=2'; }} />
           </Link>
         </div>
 
@@ -23,7 +23,7 @@ const Header = () => {
         <div className="flex justify-center items-center flex-1">
           {/* Mobile Logo */}
           <Link to="/" className="md:hidden flex items-center">
-            <img src="/logo.png" alt="4Brothers" className="h-10 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png'; }} />
+            <img src="/logo.png?v=2" alt="4Brothers" className="h-10 object-contain" onError={(e) => { e.target.onerror = null; e.target.src = '/4bro.png?v=2'; }} />
           </Link>
 
           {/* Desktop Navigation */}
