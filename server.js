@@ -78,5 +78,9 @@ process.on('unhandledRejection', (reason, promise) => {
   process.exit(1);
 });
 
-// Start the server
-startServer();
+// Start the server or export for Vercel
+if (process.env.VERCEL) {
+  module.exports = app;
+} else {
+  startServer();
+}
