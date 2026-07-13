@@ -72,6 +72,23 @@ const Settings = () => {
     }
   };
 
+  const handleImageUpload = async (e, settingKey) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setMessage('Uploading image to Supabase...');
+    try {
+      const res = await api.adminUploadImage(file);
+      if (res.data && res.data.imageUrl) {
+        setSettings(prev => ({ ...prev, [settingKey]: res.data.imageUrl }));
+        setMessage('Image uploaded! Click "Save Config" to apply changes.');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('Failed to upload image: ' + err.message);
+    }
+  };
+
   const handleCredentialsSubmit = async (e) => {
     e.preventDefault();
     if (!credentials.email && !credentials.password) {
@@ -281,6 +298,63 @@ const Settings = () => {
                 placeholder="Enter Terms of Service content..."
               />
             </div>
+          </div>
+        </div>
+        {/* Homepage Images */}
+        <div className="bg-surface-container-lowest border border-outline-variant/30 p-6 rounded-lg">
+          <h2 className="text-lg font-bold mb-4 border-b border-outline-variant/30 pb-2 text-secondary">Homepage Images (Supabase)</h2>
+          <p className="text-sm text-on-surface-variant mb-6">Upload images to instantly update your live website. All images are hosted on your Supabase Cloud.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { key: 'home_hero_image', label: 'Main Hero Image', aspect: 'video' },
+              { key: 'category_med_image', label: 'Medicines Category', aspect: 'square' },
+              { key: 'category_groceries_image', label: 'Groceries Category', aspect: 'square' },
+              { key: 'category_home_image', label: 'Home Needs Category', aspect: 'square' },
+              { key: 'category_office_image', label: 'Office Needs Category', aspect: 'square' },
+              { key: 'category_construction_image', label: 'Construction Category', aspect: 'square' }
+            ].map((imgField) => (
+              <div key={imgField.key} className="border border-outline-variant/30 rounded p-4 bg-surface-container-low">
+                <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">{imgField.label}</label>
+                
+                {settings[imgField.key] ? (
+                  <div className="mb-3 relative group">
+                    <img 
+                      src={settings[imgField.key]} 
+                      alt={imgField.label} 
+                      className={`w-full object-cover rounded border border-outline-variant/50 ${imgField.aspect === 'video' ? 'aspect-video' : 'aspect-square md:aspect-video'}`}
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded">
+                      <label className="cursor-pointer bg-primary-container text-on-primary px-4 py-2 rounded font-bold text-sm uppercase">
+                        Replace Image
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          className="hidden" 
+                          onChange={(e) => handleImageUpload(e, imgField.key)}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={`w-full border-2 border-dashed border-outline-variant/50 rounded flex items-center justify-center mb-3 bg-surface-variant/30 ${imgField.aspect === 'video' ? 'aspect-video' : 'aspect-square md:aspect-video'}`}>
+                    <label className="cursor-pointer text-center p-4">
+                      <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-2 block">add_photo_alternate</span>
+                      <span className="text-sm font-bold text-secondary uppercase block">Upload Image</span>
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        className="hidden" 
+                        onChange={(e) => handleImageUpload(e, imgField.key)}
+                      />
+                    </label>
+                  </div>
+                )}
+                <div className="text-xs text-on-surface-variant break-all bg-surface-container p-2 rounded">
+                  {settings[imgField.key] || 'No image uploaded'}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </form>

@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../../services/api';
 
 const Home = () => {
+  const [settings, setSettings] = useState({});
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await api.getSettings();
+        if (res.data) setSettings(res.data);
+      } catch (err) {
+        console.error('Error fetching settings for homepage:', err);
+      }
+    };
+    fetchSettings();
+  }, []);
   return (
     <>
       {/* Hero Section */}
       <section className="relative w-full h-[520px] md:h-[600px] overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-bottom" style={{backgroundImage: "url('/warehouse_hq.png')"}}>
+        <div className="absolute inset-0 bg-cover bg-bottom" style={{backgroundImage: `url('${settings.home_hero_image || "/warehouse_hq.png"}')`}}>
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
         </div>
         <div className="relative h-full max-w-container-max mx-auto px-4 md:px-margin flex items-center">
@@ -78,7 +92,7 @@ const Home = () => {
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src="/med_hq.png" alt="Medicines" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
+              <img src={settings.category_med_image || "/med_hq.png"} alt="Medicines" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
             </div>
             <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
               <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Medicines</h3>
@@ -91,7 +105,7 @@ const Home = () => {
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src="/groceries_hq.png" onError={(e) => e.target.src = "https://placehold.co/400x300/F9F9F9/06402B?text=Groceries"} alt="Groceries" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
+              <img src={settings.category_groceries_image || "/groceries_hq.png"} onError={(e) => e.target.src = "https://placehold.co/400x300/F9F9F9/06402B?text=Groceries"} alt="Groceries" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
             </div>
             <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
               <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Groceries</h3>
@@ -104,7 +118,7 @@ const Home = () => {
             <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src="/homeneeds_hq.png" alt="Home Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
+              <img src={settings.category_home_image || "/homeneeds_hq.png"} alt="Home Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
             </div>
             <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
               <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Home Needs</h3>
@@ -118,7 +132,7 @@ const Home = () => {
             <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded">PRIORITY</div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src="/officeneeds_hq.png" alt="Office Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
+              <img src={settings.category_office_image || "/officeneeds_hq.png"} alt="Office Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
             </div>
             <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
               <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Office Needs</h3>
@@ -131,7 +145,7 @@ const Home = () => {
             <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded z-20">BULK</div>
             <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
             <div className="h-32 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src="/construction_hq.png" alt="Construction" className="object-cover w-full h-full mix-blend-multiply md:mix-blend-normal opacity-80 md:opacity-100 group-hover:scale-105 transition-transform duration-300 md:duration-500" />
+              <img src={settings.category_construction_image || "/construction_hq.png"} alt="Construction" className="object-cover w-full h-full mix-blend-multiply md:mix-blend-normal opacity-80 md:opacity-100 group-hover:scale-105 transition-transform duration-300 md:duration-500" />
             </div>
             
             {/* Mobile Bottom Bar */}
