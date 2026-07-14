@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
 import { api } from '../../services/api';
-import logo from '../../assets/logo.png';
+
+const logo = '/4bro.png';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,11 +37,11 @@ const Header = () => {
       <div className="max-w-container-max mx-auto px-4 md:px-margin flex items-center justify-between h-16 md:h-20 gap-4">
 
         {/* Left Side: Mobile Menu Toggle (Mobile) / Logo (Desktop) */}
-        <div className="flex items-center flex-none w-1/3 md:w-auto justify-start">
+        <div className="flex items-center flex-none md:w-auto justify-start gap-2 md:gap-0">
           <button className="md:hidden p-1 text-primary hover:bg-surface-container-low rounded transition-all" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          <Link to="/" className="hidden md:flex items-center">
+          <Link to="/" className="hidden md:flex items-center justify-start">
             <img src={logo} alt="4Brothers" className="h-14 object-contain" />
           </Link>
         </div>
@@ -48,7 +49,7 @@ const Header = () => {
         {/* Center: Logo (Mobile) / Navigation (Desktop) */}
         <div className="flex justify-center items-center flex-1">
           {/* Mobile Logo */}
-          <Link to="/" className="md:hidden flex items-center">
+          <Link to="/" className="md:hidden flex items-center justify-center w-full">
             <img src={logo} alt="4Brothers" className="h-10 object-contain" />
           </Link>
 
