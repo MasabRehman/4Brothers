@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
 import { api } from '../../services/api';
-import logo from '../../assets/4bro.png';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState(() => {
     const cached = localStorage.getItem('company_categories');
     return cached ? JSON.parse(cached) : [];
+  });
+  const [settings, setSettings] = useState(() => {
+    const cached = localStorage.getItem('company_settings');
+    return cached ? JSON.parse(cached) : {};
   });
 
   useEffect(() => {
@@ -31,6 +34,23 @@ const Header = () => {
     return cat ? `/category/${cat.id}` : "#";
   };
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await api.getSettings();
+        if (res.data) {
+          setSettings(res.data);
+          localStorage.setItem('company_settings', JSON.stringify(res.data));
+        }
+      } catch (err) {
+        console.error('Error fetching site settings:', err);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  const logoSrc = settings.site_logo || settings.logo;
+
   return (
     <header className="bg-[#f6efe1] w-full top-0 sticky z-50 border-b border-outline-variant shadow-sm relative">
       <div className="max-w-container-max mx-auto px-4 md:px-margin flex items-center justify-between h-16 md:h-20 gap-4 relative">
@@ -40,17 +60,21 @@ const Header = () => {
           <button className="md:hidden p-1 text-primary hover:bg-surface-container-low rounded transition-all" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          <Link to="/" className="hidden md:flex items-center justify-start">
-            <img src={logo} alt="4Brothers" className="h-14 object-contain" />
-          </Link>
+          {logoSrc && (
+            <Link to="/" className="hidden md:flex items-center justify-start">
+              <img src={logoSrc} alt="4Brothers" className="h-14 object-contain" />
+            </Link>
+          )}
         </div>
 
         {/* Center: Logo (Mobile) / Navigation (Desktop) */}
         <div className="flex justify-center items-center flex-1 relative">
           {/* Mobile Logo */}
-          <Link to="/" className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10">
-            <img src={logo} alt="4Brothers" className="h-10 object-contain" />
-          </Link>
+          {logoSrc && (
+            <Link to="/" className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10">
+              <img src={logoSrc} alt="4Brothers" className="h-10 object-contain" />
+            </Link>
+          )}
 
           {/* Center: Navigation (Desktop) */}
           <nav className="hidden md:flex flex-1 justify-center gap-gutter font-body-md text-body-md text-primary">

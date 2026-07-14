@@ -35,11 +35,14 @@ const Cart = () => {
                   <div key={item.id} className="grid grid-cols-1 sm:grid-cols-12 gap-4 p-4 items-center">
                     <div className="sm:col-span-6 flex items-center space-x-4">
                       <div className="w-16 h-16 bg-white rounded p-1 flex-shrink-0">
-                        <img 
-                          src={item.image_url || "https://placehold.co/100x100/ffffff/000000?text=IMG"} 
-                          alt={item.product_name}
-                          className="w-full h-full object-contain mix-blend-multiply"
-                        />
+                        {item.image_url ? (
+                          <img 
+                            src={item.image_url} 
+                            alt={item.product_name}
+                            className="w-full h-full object-contain mix-blend-multiply"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                        ) : null}
                       </div>
                       <div>
                         <h4 className="font-bold text-white text-sm md:text-base">{item.product_name}</h4>

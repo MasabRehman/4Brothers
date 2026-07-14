@@ -89,11 +89,14 @@ const ProductDetail = () => {
         {/* Gallery */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-4">
           <div className="bg-black rounded-lg flex items-center justify-center border border-border-gray overflow-hidden aspect-square">
-            <img 
-              src={displayImage || "https://placehold.co/600x600/ffffff/0B0E14?text=Product+Image"} 
-              alt={product.name} 
-              className="w-full h-full object-cover"
-            />
+            {displayImage ? (
+              <img 
+                src={displayImage} 
+                alt={product.name} 
+                className="w-full h-full object-cover"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+            ) : null}
           </div>
           {allImages.length > 1 && (
             <div className="flex overflow-x-auto space-x-3 pb-2">

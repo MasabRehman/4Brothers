@@ -14,7 +14,9 @@ const Settings = () => {
     popup_sustainability: '',
     popup_compliance: '',
     popup_contact_us: '',
-    popup_terms: ''
+    popup_terms: '',
+    site_logo: '',
+    home_hero_image: ''
   });
   
   const [credentials, setCredentials] = useState({
@@ -302,17 +304,13 @@ const Settings = () => {
         </div>
         {/* Homepage Images */}
         <div className="bg-surface-container-lowest border border-outline-variant/30 p-6 rounded-lg">
-          <h2 className="text-lg font-bold mb-4 border-b border-outline-variant/30 pb-2 text-secondary">Homepage Images (Supabase)</h2>
-          <p className="text-sm text-on-surface-variant mb-6">Upload images to instantly update your live website. All images are hosted on your Supabase Cloud.</p>
+          <h2 className="text-lg font-bold mb-4 border-b border-outline-variant/30 pb-2 text-secondary">Brand & Homepage Images (Supabase)</h2>
+          <p className="text-sm text-on-surface-variant mb-6">Upload the logo and homepage background images to update the live website. Category images are managed separately in the Categories section.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { key: 'home_hero_image', label: 'Main Hero Image', aspect: 'video' },
-              { key: 'category_med_image', label: 'Medicines Category', aspect: 'square' },
-              { key: 'category_groceries_image', label: 'Groceries Category', aspect: 'square' },
-              { key: 'category_home_image', label: 'Home Needs Category', aspect: 'square' },
-              { key: 'category_office_image', label: 'Office Needs Category', aspect: 'square' },
-              { key: 'category_construction_image', label: 'Construction Category', aspect: 'square' }
+              { key: 'site_logo', label: 'Site Logo', aspect: 'square' },
+              { key: 'home_hero_image', label: 'Homepage Background', aspect: 'video' }
             ].map((imgField) => (
               <div key={imgField.key} className="border border-outline-variant/30 rounded p-4 bg-surface-container-low">
                 <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">{imgField.label}</label>

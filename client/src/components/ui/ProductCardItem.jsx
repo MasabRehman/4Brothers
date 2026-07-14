@@ -32,11 +32,14 @@ const ProductCardItem = ({ product }) => {
   return (
     <Link to={`/product/${product.slug}`} className="card-industrial group flex flex-col h-full">
       <div className="flex-grow flex items-center justify-center border-b border-border-gray relative overflow-hidden aspect-video bg-black">
-        <img 
-          src={product.main_image_url || "https://placehold.co/400x300/ffffff/0B0E14?text=Tool"} 
-          alt={product.name} 
-          className="w-full h-full object-cover z-10 group-hover:scale-105 transition-transform duration-300"
-        />
+        {product.main_image_url ? (
+          <img 
+            src={product.main_image_url} 
+            alt={product.name} 
+            className="w-full h-full object-cover z-10 group-hover:scale-105 transition-transform duration-300"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+        ) : null}
         {product.is_featured === 1 && (
           <div className="absolute top-2 right-2 bg-safety-yellow text-black text-[10px] font-bold px-2 py-1 uppercase rounded-sm z-20">
             Featured

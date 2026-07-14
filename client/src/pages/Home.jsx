@@ -45,23 +45,26 @@ const Home = () => {
   };
 
   const categoryCards = [
-    { name: 'Medicines', settingsKey: 'category_med_image', fallback: '/med_hq.png' },
-    { name: 'Groceries', settingsKey: 'category_groceries_image', fallback: '/groceries_hq.png' },
-    { name: 'Home Needs', settingsKey: 'category_home_image', fallback: '/homeneeds_hq.png' },
-    { name: 'Office Needs', settingsKey: 'category_office_image', fallback: '/officeneeds_hq.png' },
-    { name: 'Construction', settingsKey: 'category_construction_image', fallback: '/construction_hq.png', badge: 'BULK', wide: true },
+    { name: 'Medicines', settingsKey: 'category_med_image' },
+    { name: 'Groceries', settingsKey: 'category_groceries_image' },
+    { name: 'Home Needs', settingsKey: 'category_home_image' },
+    { name: 'Office Needs', settingsKey: 'category_office_image' },
+    { name: 'Construction', settingsKey: 'category_construction_image', badge: 'BULK', wide: true },
   ];
 
   const categoryImageUrl = (card) => {
     const category = categories.find(c => c.name.toLowerCase() === card.name.toLowerCase());
-    return category?.image_url || settings[card.settingsKey] || card.fallback;
+    return category?.image_url || settings[card.settingsKey] || '';
   };
 
   return (
     <>
       {/* Hero Section */}
       <section className="relative w-full h-[520px] md:h-[600px] overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-bottom" style={{backgroundImage: `url('${settings.home_hero_image || "/warehouse_hq.png"}')`}}>
+        <div
+          className={`absolute inset-0 bg-bottom ${settings.home_hero_image ? 'bg-cover' : ''}`}
+          style={settings.home_hero_image ? { backgroundImage: `url('${settings.home_hero_image}')` } : undefined}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
         </div>
         <div className="relative h-full max-w-container-max mx-auto px-4 md:px-margin flex items-center">
@@ -129,6 +132,7 @@ const Home = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-stack-md">
           {categoryCards.map((card) => {
             const isConstruction = card.name === 'Construction';
+            const imageUrl = categoryImageUrl(card);
             return (
               <Link
                 key={card.name}
@@ -137,14 +141,15 @@ const Home = () => {
               >
                 <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
                 {isConstruction && <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded">BULK</div>}
-                <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
                 <div className={`h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden`}>
-                  <img
-                    src={categoryImageUrl(card)}
-                    alt={card.name}
-                    className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100"
-                    onError={(e) => { e.target.onerror = null; e.target.src = card.fallback; }}
-                  />
+                  {imageUrl ? (
+                    <img
+                      src={imageUrl}
+                      alt={card.name}
+                      className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  ) : null}
                 </div>
                 <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
                   <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">{card.name}</h3>
@@ -204,7 +209,7 @@ const Home = () => {
             
             {/* Map Visualization Placeholder */}
             <div className="h-[400px] industrial-card rounded-lg overflow-hidden border-2 border-primary-container relative">
-              <div className="bg-cover bg-center w-full h-full" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH8xxygv28Kmg4jega3uSxCY1PRqq24BMjuU-AyBziiY8evjeQaUECBMQAULQZd1FgjHTCyPNZ8-F1JIpVUlEiqxgKAW865KbesKeNR_vwXyJU_vwW1Wm97ZiXtJPbWaUTDjINQTbl8gSkNzsUjxu5mxw3T8MSTNBduX1nxcTGuShW6XYpBNLkiJ9NH_uJzyPaWjlDHXvA8SDLzCZwFl20BvR8nDur4oUfnJnINjsyRyWI7yg5H-AU7w')" }}></div>
+              <div className="w-full h-full bg-surface-container-low rounded-lg"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary-container/80 to-transparent flex items-end p-6">
                 <div className="bg-surface-container-lowest/90 backdrop-blur p-4 rounded border border-outline-variant w-full flex justify-between items-center shadow-lg">
                   <div>

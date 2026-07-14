@@ -14,8 +14,12 @@ const BrandStrip = () => {
           <div className="h-px bg-gray-800 flex-grow max-w-xs"></div>
         </div>
 
-        <div className="flex justify-center w-full">
-          <img src="/brand_strip.png" alt="Brand Logos" className="w-full max-w-6xl object-contain shadow-sm" />
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {brands.map((brand) => (
+            <div key={brand} className="rounded-lg border border-gray-700 bg-white/5 py-4 text-sm font-semibold uppercase tracking-widest text-white">
+              {brand}
+            </div>
+          ))}
         </div>
       </div>
     </div>
