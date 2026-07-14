@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="bg-[#f6efe1] w-full top-0 sticky z-50 border-b border-outline-variant shadow-sm relative">
-      <div className="max-w-container-max mx-auto px-4 md:px-margin flex items-center justify-between h-16 md:h-20 gap-4">
+      <div className="max-w-container-max mx-auto px-4 md:px-margin flex items-center justify-between h-16 md:h-20 gap-4 relative">
 
         {/* Left Side: Mobile Menu Toggle (Mobile) / Logo (Desktop) */}
         <div className="flex items-center flex-none md:w-auto justify-start gap-2 md:gap-0">
@@ -46,14 +46,14 @@ const Header = () => {
         </div>
 
         {/* Center: Logo (Mobile) / Navigation (Desktop) */}
-        <div className="flex justify-center items-center flex-1">
+        <div className="flex justify-center items-center flex-1 relative">
           {/* Mobile Logo */}
-          <Link to="/" className="md:hidden flex items-center justify-center w-full">
+          <Link to="/" className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10">
             <img src={logo} alt="4Brothers" className="h-10 object-contain" />
           </Link>
 
           {/* Center: Navigation (Desktop) */}
-        <nav className="hidden md:flex flex-1 justify-center gap-gutter font-body-md text-body-md text-primary">
+          <nav className="hidden md:flex flex-1 justify-center gap-gutter font-body-md text-body-md text-primary">
           <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Medicines')}>Medicines</Link>
           <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Groceries')}>Groceries</Link>
           <Link className="cursor-pointer active:opacity-80 hover:text-secondary transition-colors text-primary" to={getCatId('Home Needs')}>Home Needs</Link>
@@ -83,7 +83,8 @@ const Header = () => {
           <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Groceries')}>Groceries</Link>
           <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Home Needs')}>Home Needs</Link>
           <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Office Needs')}>Office Needs</Link>
-          <Link className="px-4 py-3 active:bg-surface-variant" to={getCatId('Construction')}>Construction</Link>
+          <Link className="px-4 py-3 border-b border-outline-variant/30 active:bg-surface-variant" to={getCatId('Construction')}>Construction</Link>
+          <Link className="px-4 py-3 active:bg-surface-variant text-secondary/80 hover:text-secondary transition-colors font-bold" to="/admin/login">Admin Login</Link>
         </div>
       )}
     </header>
