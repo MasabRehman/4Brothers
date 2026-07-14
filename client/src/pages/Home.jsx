@@ -43,6 +43,20 @@ const Home = () => {
     const cat = categories.find(c => c.name.toLowerCase() === name.toLowerCase());
     return cat ? `/category/${cat.id}` : "#";
   };
+
+  const categoryCards = [
+    { name: 'Medicines', settingsKey: 'category_med_image', fallback: '/med_hq.png' },
+    { name: 'Groceries', settingsKey: 'category_groceries_image', fallback: '/groceries_hq.png' },
+    { name: 'Home Needs', settingsKey: 'category_home_image', fallback: '/homeneeds_hq.png' },
+    { name: 'Office Needs', settingsKey: 'category_office_image', fallback: '/officeneeds_hq.png' },
+    { name: 'Construction', settingsKey: 'category_construction_image', fallback: '/construction_hq.png', badge: 'BULK', wide: true },
+  ];
+
+  const categoryImageUrl = (card) => {
+    const category = categories.find(c => c.name.toLowerCase() === card.name.toLowerCase());
+    return category?.image_url || settings[card.settingsKey] || card.fallback;
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -113,83 +127,32 @@ const Home = () => {
 
         {/* Grid Container */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-stack-md">
-          
-          {/* Medicine */}
-          <Link to={getCatId('Medicines')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
-            <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
-            <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
-            <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src={settings.category_med_image || "/med_hq.png"} alt="Medicines" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
-            </div>
-            <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
-              <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Medicines</h3>
-              <span className="md:hidden material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
-            </div>
-          </Link>
-
-          {/* Groceries */}
-          <Link to={getCatId('Groceries')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
-            <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
-            <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
-            <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src={settings.category_groceries_image || "/groceries_hq.png"} onError={(e) => e.target.src = "https://placehold.co/400x300/F9F9F9/06402B?text=Groceries"} alt="Groceries" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
-            </div>
-            <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
-              <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Groceries</h3>
-              <span className="md:hidden material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
-            </div>
-          </Link>
-
-          {/* Home Needs */}
-          <Link to={getCatId('Home Needs')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
-            <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
-            <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
-            <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src={settings.category_home_image || "/homeneeds_hq.png"} alt="Home Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
-            </div>
-            <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
-              <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Home Needs</h3>
-              <span className="md:hidden material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
-            </div>
-          </Link>
-
-          {/* Office Needs */}
-          <Link to={getCatId('Office Needs')} className="group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative">
-            <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
-            <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded">PRIORITY</div>
-            <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
-            <div className="h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src={settings.category_office_image || "/officeneeds_hq.png"} alt="Office Needs" className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100" />
-            </div>
-            <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
-              <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">Office Needs</h3>
-              <span className="md:hidden material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
-            </div>
-          </Link>
-
-          {/* Construction (Featured) */}
-          <Link to={getCatId('Construction')} className="col-span-2 md:col-span-1 group bg-surface-container-lowest md:industrial-card border md:border-t-2 border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative md:mt-0 mt-1">
-            <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded z-20">BULK</div>
-            <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
-            <div className="h-32 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden">
-              <img src={settings.category_construction_image || "/construction_hq.png"} alt="Construction" className="object-cover w-full h-full mix-blend-multiply md:mix-blend-normal opacity-80 md:opacity-100 group-hover:scale-105 transition-transform duration-300 md:duration-500" />
-            </div>
-            
-            {/* Mobile Bottom Bar */}
-            <div className="md:hidden p-3 border-t border-[#072a1f]/5 flex items-center justify-between bg-surface-container-lowest z-10">
-              <div>
-                <span className="block font-label-bold text-label-bold text-secondary mb-1">FEATURED DIVISION</span>
-                <span className="font-headline-md text-[18px] font-bold text-primary">Construction & Heavy</span>
-              </div>
-              <span className="material-symbols-outlined text-secondary bg-secondary-fixed/20 p-2 rounded-full">engineering</span>
-            </div>
-
-            {/* Desktop Bottom Bar */}
-            <div className="hidden md:block p-4 text-center border-t border-outline-variant bg-surface-container-lowest">
-              <h3 className="font-label-md text-label-md uppercase text-primary-container tracking-wider">Construction</h3>
-            </div>
-          </Link>
-
+          {categoryCards.map((card) => {
+            const isConstruction = card.name === 'Construction';
+            return (
+              <Link
+                key={card.name}
+                to={getCatId(card.name)}
+                className={`group bg-surface-container-lowest md:industrial-card border-2 md:border md:border-t-2 md:hover:border-secondary border-secondary rounded md:rounded-lg flex flex-col industrial-shadow md:hover:industrial-shadow transition-all overflow-hidden relative ${isConstruction ? 'col-span-2 md:col-span-1' : ''}`}
+              >
+                <div className="md:hidden absolute top-2 right-2 z-20 bg-secondary text-on-secondary rounded-full p-1 shadow-md"><span className="material-symbols-outlined text-[14px] block">check</span></div>
+                {isConstruction && <div className="hidden md:block absolute top-2 right-2 bg-secondary text-on-secondary-fixed font-label-bold text-[10px] px-2 py-1 rounded">BULK</div>}
+                <div className="md:hidden absolute top-0 left-0 w-full h-[2px] bg-secondary-container"></div>
+                <div className={`h-24 md:h-48 bg-surface-variant flex items-center justify-center relative overflow-hidden`}>
+                  <img
+                    src={categoryImageUrl(card)}
+                    alt={card.name}
+                    className="object-cover w-full h-full mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300 md:duration-500 md:mix-blend-normal md:opacity-100"
+                    onError={(e) => { e.target.onerror = null; e.target.src = card.fallback; }}
+                  />
+                </div>
+                <div className="p-3 md:p-4 border-t border-[#072a1f]/5 md:border-outline-variant flex md:block items-center justify-between bg-surface-container-lowest z-10 text-center">
+                  <h3 className="font-label-md text-label-md text-secondary md:text-primary-container md:uppercase md:tracking-wider transition-colors">{card.name}</h3>
+                  <span className="md:hidden material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
