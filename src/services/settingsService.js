@@ -6,17 +6,10 @@ const CACHE_TTL = 300; // 5 minutes
 
 const settingsService = {
   /**
-   * Get all settings (uses cache)
+   * Get all settings (always fresh)
    */
   getAllSettings: async () => {
-    const cachedSettings = cache.get(SETTINGS_CACHE_KEY);
-    if (cachedSettings) {
-      return cachedSettings;
-    }
-
-    const settings = await settingsRepository.getAllAsMap();
-    cache.set(SETTINGS_CACHE_KEY, settings, CACHE_TTL);
-    return settings;
+    return await settingsRepository.getAllAsMap();
   },
 
   /**

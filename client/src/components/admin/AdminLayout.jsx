@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LayoutDashboard, PackageSearch, ClipboardList, LogOut, Settings, Menu, X } from 'lucide-react';
+import { api } from '../../services/api';
+import defaultLogo from '../../assets/logo.png';
 
 const AdminLayout = ({ children }) => {
   const { adminUser, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [settings, setSettings] = useState({});
+
+  React.useEffect(() => {
+    api.getSettings().then(res => {
+      if (res.data) setSettings(res.data);
+    }).catch(console.error);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -30,10 +39,7 @@ const AdminLayout = ({ children }) => {
       <aside className={`w-64 bg-primary-container border-r border-outline-variant flex flex-col fixed h-full z-50 transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <div className="p-6 border-b border-outline-variant/30 flex justify-between items-center">
           <div className="flex items-center">
-            <div className="relative w-10 h-10 flex items-center justify-center mr-3">
-              <div className="absolute inset-0 border-2 border-secondary rounded-full"></div>
-              <span className="font-headline-md font-bold text-lg text-on-primary-container tracking-tighter">4B</span>
-            </div>
+            <img src={settings.site_logo || defaultLogo} alt="Logo" className="h-10 object-contain mr-3" />
             <div>
               <h1 className="font-headline-md font-bold text-xl text-secondary tracking-widest leading-none uppercase">ADMIN</h1>
               <span className="text-on-primary-container/70 text-[10px] tracking-widest uppercase font-label-bold">Control Panel</span>

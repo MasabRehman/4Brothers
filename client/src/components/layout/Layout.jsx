@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-on-surface font-body-md antialiased max-w-full">
-      <Header />
+      <Header settings={settings} />
       <main className="flex-grow flex flex-col">
         {children}
       </main>
