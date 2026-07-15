@@ -82,8 +82,10 @@ const Settings = () => {
     try {
       const res = await api.adminUploadImage(file);
       if (res.data && res.data.imageUrl) {
-        setSettings(prev => ({ ...prev, [settingKey]: res.data.imageUrl }));
-        setMessage('Image uploaded! Click "Save Config" to apply changes.');
+        const imageUrl = res.data.imageUrl;
+        setSettings(prev => ({ ...prev, [settingKey]: imageUrl }));
+        await api.adminUpdateSettings({ [settingKey]: imageUrl });
+        setMessage('Image uploaded and saved successfully!');
       }
     } catch (err) {
       console.error(err);
